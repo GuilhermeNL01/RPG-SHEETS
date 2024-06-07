@@ -1,0 +1,5 @@
+.banner{
+  background-color: rgba(255, 51, 0, 0.274);
+  flex-wrap: row;
+  color: rgb(207, 148, 38);
+}
