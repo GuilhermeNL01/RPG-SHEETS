@@ -7,7 +7,6 @@ backdrop-filter: blur(8.7px);
 border: 1px solid rgba(255, 255, 255, 0.24);
 font-family: verdana;
 justify-content: space-between;
-
 }
 button{
   appearance: none;
@@ -54,8 +53,8 @@ ul {
 
 }
 li{
-  display: inline-flex;
-
+  display: inline;
+  padding-inline: 6vw;
 }
 
 
