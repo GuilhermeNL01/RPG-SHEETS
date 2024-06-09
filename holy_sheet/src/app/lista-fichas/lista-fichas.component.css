@@ -11,7 +11,13 @@ div{
   color: rgb(204, 204, 204);
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-weight: bolder;
+  margin-bottom: 10vh;
+  margin-top: 5vh;
+  transition: all, 0.5s;
 
+}
+div:hover{
+  transform: scale(1.2);
 }
 h1{
   padding: 5%;
