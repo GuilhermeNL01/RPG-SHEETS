@@ -1,0 +1,16 @@
+div{
+  background-image: url("../../../public/Eisqueleto.jpg");
+  background-size: cover;
+  width: 40vw;
+  height: 40vh;
+  margin: auto;
+  border-color: rgb(0, 0, 0);
+  border: 15px;
+  border-radius: 50px;
+  text-align: center;
+  filter: drop-shadow(0 0 0.75rem rgb(121, 74, 165));
+  color: rgb(204, 204, 204);
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-weight: bolder;
+
+}
