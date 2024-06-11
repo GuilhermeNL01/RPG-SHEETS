@@ -7,14 +7,14 @@ div{
   border-color: rgb(0, 0, 0);
   border: 15px;
   border-radius: 50px;
-  filter: drop-shadow(0 0 0.75rem rgb(121, 74, 165));
-  color: rgb(204, 204, 204);
+  filter: drop-shadow(0 10px 0.75rem rgb(121, 74, 165));
+  color: rgb(230, 230, 230);
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-weight: bolder;
   margin-bottom: 10vh;
   margin-top: 5vh;
   transition: all, 0.5s;
-
+overflow: hidden;
 }
 div:hover{
   transform: scale(1.2);
