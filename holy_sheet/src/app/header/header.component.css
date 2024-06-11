@@ -62,13 +62,13 @@ li{
   display: inline;
   padding-inline: 6vw;
 }
-h1{
-  margin-top: 0;
-}
+
 h2{
   text-align: right;
   margin-top: 0;
   padding-right: 5vw;
 }
-
+img{
+  background-image: url(../../../public/logo.png);
+}
 
