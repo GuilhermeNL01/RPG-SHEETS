@@ -11,7 +11,7 @@ display: inline-flexbox;
 max-height: max-content;
 min-height: min-content;
 }
-button{
+.btn{
   appearance: none;
   background-color: #000000;
   border: 2px solid #1A1A1A;
@@ -41,16 +41,16 @@ button{
 
 }
 
-button:disabled {
+.btn:disabled {
   pointer-events: none;
 }
 
-button:hover {
+.btn:hover {
   box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
   transform: translateY(-2px);
 }
 
-button:active {
+.btn:active {
   box-shadow: none;
   transform: translateY(0);
 }
