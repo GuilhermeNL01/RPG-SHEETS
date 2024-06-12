@@ -1,0 +1,42 @@
+/* The side navigation menu */
+.sidebar {
+  margin: 0vw;
+  padding: 0vw;
+  width: 100vw;
+
+  position:absolute;
+  height: fit-content;
+  overflow:hidden;
+  animation: entrada 2s ease-in-out 0s 1 normal forwards;
+  text-align: center;
+
+}
+@keyframes entrada {
+  from {height: 0%;}
+  to {height: calc(78vh);}
+}
+
+.log-form{
+  display: inline-block;
+  height: 70vh;
+  width: 100vw;
+  background: rgba(255, 255, 255, 0.19);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(8.7px);
+-webkit-backdrop-filter: blur(8.7px);
+border: 1px solid rgba(255, 255, 255, 0.24);
+
+}
+h2{
+  padding: 10px;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  margin-top: 0;
+  height: 5vh;
+  background: rgba(0, 0, 0, 0.76);
+  color: white;
+}
+form{
+  display: inline-flexbox;
+}

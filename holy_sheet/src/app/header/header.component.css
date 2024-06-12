@@ -10,6 +10,7 @@ justify-content: space-between;
 display: inline-flexbox;
 max-height: max-content;
 min-height: min-content;
+width: auto;
 }
 .btn{
   appearance: none;
@@ -38,6 +39,7 @@ min-height: min-content;
   display: inline-flex;
   overflow: hidden;
   justify-content: center;
+  position: relative;
 
 }
 
