@@ -16,10 +16,11 @@
   to {height: calc(78vh);}
 }
 
-.logform{
+.glassmorph{
   display: inline-block;
-  height: 70vh;
-  width: 100vw;
+  height: auto;
+  width: auto;
+  padding: 5vh;
   background: rgba(255, 255, 255, 0.19);
 border-radius: 16px;
 box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
