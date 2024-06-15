@@ -1,1 +1,57 @@
-<p>criador works!</p>
+<h1>Criar Nova Ficha</h1>
+
+<form>
+  <div class="form-group">
+    <label for="characterName">Nome do Personagem</label>
+    <input id="characterName" name="characterName" type="text" placeholder="Digite o nome do personagem" [(ngModel)]="characterName">
+  </div>
+
+  <div class="form-group">
+    <label for="characterRace">Raça do Personagem</label>
+    <input id="characterRace" name="characterRace" type="text" placeholder="Digite a raça do personagem" [(ngModel)]="characterRace">
+  </div>
+
+  <div class="form-group">
+    <label for="characterClass">Classe do Personagem</label>
+    <input id="characterClass" name="characterClass" type="text" placeholder="Digite a classe do personagem" [(ngModel)]="characterClass">
+  </div>
+
+  <div class="form-group">
+    <label for="characterLevel">Nível do Personagem</label>
+    <input id="characterLevel" name="characterLevel" type="number" placeholder="Digite o nível do personagem" [(ngModel)]="characterLevel">
+  </div>
+
+  <h2>Atributos do Personagem</h2>
+
+  <div class="form-group">
+    <label for="strength">Força</label>
+    <input id="strength" name="strength" type="number" placeholder="Digite o valor de força" [(ngModel)]="strength">
+  </div>
+
+  <div class="form-group">
+    <label for="dexterity">Destreza</label>
+    <input id="dexterity" name="dexterity" type="number" placeholder="Digite o valor de destreza" [(ngModel)]="dexterity">
+  </div>
+
+  <div class="form-group">
+    <label for="constitution">Constituição</label>
+    <input id="constitution" name="constitution" type="number" placeholder="Digite o valor de constituição" [(ngModel)]="constitution">
+  </div>
+
+  <div class="form-group">
+    <label for="intelligence">Inteligência</label>
+    <input id="intelligence" name="intelligence" type="number" placeholder="Digite o valor de inteligência" [(ngModel)]="intelligence">
+  </div>
+
+  <div class="form-group">
+    <label for="wisdom">Sabedoria</label>
+    <input id="wisdom" name="wisdom" type="number" placeholder="Digite o valor de sabedoria" [(ngModel)]="wisdom">
+  </div>
+
+  <div class="form-group">
+    <label for="charisma">Carisma</label>
+    <input id="charisma" name="charisma" type="number" placeholder="Digite o valor de carisma" [(ngModel)]="charisma">
+  </div>
+
+  <button type="button" class="btn" (click)="criarFicha()">Criar Ficha</button>
+</form>
