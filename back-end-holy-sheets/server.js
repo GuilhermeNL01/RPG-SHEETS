@@ -17,10 +17,6 @@ const db = mysql.createConnection({
 });
 
 
-connection.connect(error => {
-  if (error) throw error;
-  console.log('Banco de dados conectado!');
-});
 /////////////////////////////////////////////////////////////////
 // Rotas CRUD pro cadastro do usuário
 app.get('/cadastros', (req, res) => {

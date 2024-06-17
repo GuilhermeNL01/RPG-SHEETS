@@ -4,7 +4,7 @@ import { CadastroComponent } from './cadastro/cadastro.component';
 import { HomeComponent } from './home/home.component';
 import { CriadorComponent } from './criador/criador.component';
 import { ListaFichasComponent } from './lista-fichas/lista-fichas.component';
-import { DataComponent } from './data/data.component';
+
 
 export const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -12,5 +12,4 @@ export const routes: Routes = [
   {path: 'cadastro', component: CadastroComponent},
   {path: 'criador', component: CriadorComponent},
   {path: 'listafichas', component: ListaFichasComponent},
-  {path: 'teste', component: DataComponent},
 ];

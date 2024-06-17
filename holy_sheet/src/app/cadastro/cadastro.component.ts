@@ -19,9 +19,9 @@ export class CadastroComponent {
 
   onSubmit() {
     const dados = {
-      nome: this.nome_usuario,
-      senha: this.senha_usuario,
-      email: this.email_usuario,
+      nome_usuario: this.nome_usuario,
+      senha_usuario: this.senha_usuario,
+      email_usuario: this.email_usuario,
     };
 
     this.datasService.addData(dados).subscribe(
