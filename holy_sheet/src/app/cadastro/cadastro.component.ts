@@ -25,11 +25,8 @@ export class CadastroComponent {
     };
 
     this.datasService.addData(dados).subscribe(
-      response => {
-        console.log('Dados enviados com sucesso', response);
-      },
-      error => {
-        console.error('Erro ao enviar dados', error);
+      {next:response => console.log('Dados enviados com sucesso', response),
+      error:error => console.error('Erro ao enviar dados', error)
       }
     );
   }
