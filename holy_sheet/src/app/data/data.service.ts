@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class DataService {
-  private apiUrl = 'http://localhost:3000/api/data';
+  private apiUrl = 'http://localhost:3306/api/data';
 
   constructor(private http: HttpClient) { }
 
@@ -18,3 +18,5 @@ export class DataService {
     return this.http.post<any>(this.apiUrl, data);
   }
 }
+
+

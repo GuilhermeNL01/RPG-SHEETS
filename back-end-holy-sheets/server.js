@@ -17,11 +17,15 @@ const db = mysql.createConnection({
 });
 
 
+db.connect(error => {
+  if (error) throw error;
+  console.log('Banco de dados conectado!');
+});
 /////////////////////////////////////////////////////////////////
 // Rotas CRUD pro cadastro do usuário
 app.get('/cadastros', (req, res) => {
   const sql = 'SELECT * FROM cadastros';
-  connection.query(sql, (error, results) => {
+  db.query(sql, (error, results) => {
       if (error) throw error;
       res.send(results);
   });
@@ -30,7 +34,7 @@ app.get('/cadastros', (req, res) => {
 app.post('/cadastros', (req, res) => {
   const sql = 'INSERT INTO cadastros SET ?';
   const newItem = req.body;
-  connection.query(sql, newItem, (error, results) => {
+  db.query(sql, newItem, (error, results) => {
       if (error) throw error;
       res.send(results);
   });
@@ -40,7 +44,7 @@ app.put('/cadastros/:id_usuario', (req, res) => {
   const sql = 'UPDATE cadastros SET ? WHERE id = ?';
   const id = req.params.id;
   const updatedItem = req.body;
-  connection.query(sql, [updatedItem, id], (error, results) => {
+  db.query(sql, [updatedItem, id], (error, results) => {
       if (error) throw error;
       res.send(results);
   });
@@ -49,7 +53,7 @@ app.put('/cadastros/:id_usuario', (req, res) => {
 app.delete('/cadastros/:id_usuario', (req, res) => {
   const sql = 'DELETE FROM cadastros WHERE id = ?';
   const id = req.params.id;
-  connection.query(sql, id, (error, results) => {
+  db.query(sql, id, (error, results) => {
       if (error) throw error;
       res.send(results);
   });
@@ -58,7 +62,7 @@ app.delete('/cadastros/:id_usuario', (req, res) => {
 // Rotas CRUD pra ficha do usuário
 app.get('/ficha', (req, res) => {
   const sql = 'SELECT * FROM ficha';
-  connection.query(sql, (error, results) => {
+  db.query(sql, (error, results) => {
       if (error) throw error;
       res.send(results);
   });
@@ -67,7 +71,7 @@ app.get('/ficha', (req, res) => {
 app.post('/ficha', (req, res) => {
   const sql = 'INSERT INTO ficha SET ?';
   const newItem = req.body;
-  connection.query(sql, newItem, (error, results) => {
+  db.query(sql, newItem, (error, results) => {
       if (error) throw error;
       res.send(results);
   });
@@ -77,7 +81,7 @@ app.put('/ficha/:id_ficha', (req, res) => {
   const sql = 'UPDATE ficha SET ? WHERE id = ?';
   const id = req.params.id;
   const updatedItem = req.body;
-  connection.query(sql, [updatedItem, id], (error, results) => {
+  db.query(sql, [updatedItem, id], (error, results) => {
       if (error) throw error;
       res.send(results);
   });
@@ -86,7 +90,7 @@ app.put('/ficha/:id_ficha', (req, res) => {
 app.delete('/ficha/:id_ficha', (req, res) => {
   const sql = 'DELETE FROM ficha WHERE id = ?';
   const id = req.params.id;
-  connection.query(sql, id, (error, results) => {
+  db.query(sql, id, (error, results) => {
       if (error) throw error;
       res.send(results);
   });
