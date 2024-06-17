@@ -16,30 +16,86 @@ const db = mysql.createConnection({
   database: 'holysheetsdb'
 });
 
-db.connect((err) => {
-  if (err) {
-    throw err;
-  }
-  console.log('MySQL Connected...');
-});
 
-app.get('/api/data', (req, res) => {
-  let sql = 'SELECT * FROM your-table';
-  db.query(sql, (err, results) => {
-    if (err) throw err;
-    res.json(results);
+connection.connect(error => {
+  if (error) throw error;
+  console.log('Banco de dados conectado!');
+});
+/////////////////////////////////////////////////////////////////
+// Rotas CRUD pro cadastro do usuário
+app.get('/cadastros', (req, res) => {
+  const sql = 'SELECT * FROM cadastros';
+  connection.query(sql, (error, results) => {
+      if (error) throw error;
+      res.send(results);
   });
 });
 
-app.post('/api/data', (req, res) => {
-  let data = { column1: req.body.column1, column2: req.body.column2 };
-  let sql = 'INSERT INTO your-table SET ?';
-  db.query(sql, data, (err, result) => {
-    if (err) throw err;
-    res.json({ id: result.insertId, ...data });
+app.post('/cadastros', (req, res) => {
+  const sql = 'INSERT INTO cadastros SET ?';
+  const newItem = req.body;
+  connection.query(sql, newItem, (error, results) => {
+      if (error) throw error;
+      res.send(results);
+  });
+});
+
+app.put('/cadastros/:id_usuario', (req, res) => {
+  const sql = 'UPDATE cadastros SET ? WHERE id = ?';
+  const id = req.params.id;
+  const updatedItem = req.body;
+  connection.query(sql, [updatedItem, id], (error, results) => {
+      if (error) throw error;
+      res.send(results);
+  });
+});
+
+app.delete('/cadastros/:id_usuario', (req, res) => {
+  const sql = 'DELETE FROM cadastros WHERE id = ?';
+  const id = req.params.id;
+  connection.query(sql, id, (error, results) => {
+      if (error) throw error;
+      res.send(results);
+  });
+});
+/////////////////////////////////////////////////////////////
+// Rotas CRUD pra ficha do usuário
+app.get('/ficha', (req, res) => {
+  const sql = 'SELECT * FROM ficha';
+  connection.query(sql, (error, results) => {
+      if (error) throw error;
+      res.send(results);
+  });
+});
+
+app.post('/ficha', (req, res) => {
+  const sql = 'INSERT INTO ficha SET ?';
+  const newItem = req.body;
+  connection.query(sql, newItem, (error, results) => {
+      if (error) throw error;
+      res.send(results);
+  });
+});
+
+app.put('/ficha/:id_ficha', (req, res) => {
+  const sql = 'UPDATE ficha SET ? WHERE id = ?';
+  const id = req.params.id;
+  const updatedItem = req.body;
+  connection.query(sql, [updatedItem, id], (error, results) => {
+      if (error) throw error;
+      res.send(results);
+  });
+});
+
+app.delete('/ficha/:id_ficha', (req, res) => {
+  const sql = 'DELETE FROM ficha WHERE id = ?';
+  const id = req.params.id;
+  connection.query(sql, id, (error, results) => {
+      if (error) throw error;
+      res.send(results);
   });
 });
 
 app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+  console.log(`Servidor rodando na porta ${port}`);
 });
