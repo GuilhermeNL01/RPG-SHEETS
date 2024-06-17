@@ -1,11 +1,11 @@
 <div class="sidebar">
   <div class="glassmorph">
   <div class="login-page">
-    <div class="form">
+    <div class="form" (ngsubmit)="onSubmit()">
       <form class="register-form">
-        <input type="text" placeholder="username"/>
-        <input type="password" placeholder="password"/>
-        <input type="text" placeholder="email address"/>
+        <input type="text" placeholder="username" [(ngModel)]="nome_usuario"/>
+        <input type="password" placeholder="password" [(ngModel)]="senha_usuario"/>
+        <input type="text" placeholder="email address" [(ngModel)]="email_usuario"/>
         <button>Sign Up</button>
         <p class="message">Already registered? <a href="login">Sign In</a></p>
       </form>
