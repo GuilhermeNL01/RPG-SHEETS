@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from "./header/header.component";
-import {  } from '@angular/common/http';
 
 @Component({
     selector: 'app-root',
@@ -12,4 +11,5 @@ import {  } from '@angular/common/http';
 })
 export class AppComponent {
   title = 'holy_sheet';
+
 }
