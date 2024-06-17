@@ -7,7 +7,7 @@
         <input type="password" placeholder="password" [(ngModel)]="senha_usuario" name="senha_usuario"/>
         <input type="text" placeholder="email address" [(ngModel)]="email_usuario" name="email_usuario"/>
         <button>Sign Up</button>
-        <p class="message">Already registered? <a href="login">Sign In</a></p>
+        <p class="message">Already registered? <a [routerLink]="['/login']" routerLinkActive="router-link-active">Sign In</a></p>
       </form>
     </div>
   </div>
