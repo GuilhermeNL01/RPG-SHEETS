@@ -1,3 +1,4 @@
+import { FichaService } from './../data/ficha.service';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
@@ -9,30 +10,38 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./criador.component.css']
 })
 export class CriadorComponent {
-  characterName: string = '';
-  characterRace: string = '';
-  characterClass: string = '';
-  characterLevel: number | null = null;
+  ficha_nome: string = '';
+  ficha_raca: string = '';
+  ficha_classe: string = '';
+  ficha_nivel: number | undefined;
 
-  strength: number | null = null;
-  dexterity: number | null = null;
-  constitution: number | null = null;
-  intelligence: number | null = null;
-  wisdom: number | null = null;
-  charisma: number | null = null;
+  ficha_str: number | undefined;
+  ficha_dex: number | undefined;
+  ficha_con: number | undefined;
+  ficha_int: number | undefined;
+  ficha_sab: number | undefined;
+  ficha_cha: number | undefined;
 
-  criarFicha() {
-    console.log('Ficha criada:', {
-      characterName: this.characterName,
-      characterRace: this.characterRace,
-      characterClass: this.characterClass,
-      characterLevel: this.characterLevel,
-      strength: this.strength,
-      dexterity: this.dexterity,
-      constitution: this.constitution,
-      intelligence: this.intelligence,
-      wisdom: this.wisdom,
-      charisma: this.charisma,
-    });
+  constructor(private fichaService: FichaService) { }
+
+  onSubmit() {
+    const dados = {
+  ficha_nome: this.ficha_nome,
+  ficha_raca: this.ficha_raca,
+  ficha_classe: this.ficha_classe,
+  ficha_nivel: this.ficha_nivel,
+  ficha_str: this.ficha_str,
+  ficha_dex: this.ficha_dex,
+  ficha_con: this.ficha_con,
+  ficha_int: this.ficha_int,
+  ficha_sab: this.ficha_sab,
+  ficha_cha: this.ficha_cha
+    };
+
+    this.fichaService.addData(dados).subscribe(
+      {next:response => console.log('Dados enviados com sucesso', response),
+      error:error => console.error('Erro ao enviar dados', error)
+      }
+    );
   }
 }
