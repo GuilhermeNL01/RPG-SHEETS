@@ -1,57 +1,57 @@
 <h1>Criar Nova Ficha</h1>
 
 <form>
-  <div class="form-group">
+  <div class="form-group" (ngSubmit)="onSubmit()">
     <label for="characterName">Nome do Personagem</label>
-    <input id="characterName" name="characterName" type="text" placeholder="Digite o nome do personagem" [(ngModel)]="characterName">
+    <input id="characterName" name="ficha_nome" type="text" placeholder="Digite o nome do personagem" [(ngModel)]="ficha_nome">
   </div>
 
   <div class="form-group">
     <label for="characterRace">Raça do Personagem</label>
-    <input id="characterRace" name="characterRace" type="text" placeholder="Digite a raça do personagem" [(ngModel)]="characterRace">
+    <input id="characterRace" name="ficha_raca" type="text" placeholder="Digite a raça do personagem" [(ngModel)]="ficha_raca">
   </div>
 
   <div class="form-group">
     <label for="characterClass">Classe do Personagem</label>
-    <input id="characterClass" name="characterClass" type="text" placeholder="Digite a classe do personagem" [(ngModel)]="characterClass">
+    <input id="characterClass" name="ficha_classe" type="text" placeholder="Digite a classe do personagem" [(ngModel)]="ficha_classe">
   </div>
 
   <div class="form-group">
     <label for="characterLevel">Nível do Personagem</label>
-    <input id="characterLevel" name="characterLevel" type="number" placeholder="Digite o nível do personagem" [(ngModel)]="characterLevel">
+    <input id="characterLevel" name="ficha_nivel" type="number" placeholder="Digite o nível do personagem" [(ngModel)]="ficha_nivel">
   </div>
 
   <h2>Atributos do Personagem</h2>
 
   <div class="form-group">
     <label for="strength">Força</label>
-    <input id="strength" name="strength" type="number" placeholder="Digite o valor de força" [(ngModel)]="strength">
+    <input id="strength" name="ficha_str" type="number" placeholder="Digite o valor de força" [(ngModel)]="ficha_str">
   </div>
 
   <div class="form-group">
     <label for="dexterity">Destreza</label>
-    <input id="dexterity" name="dexterity" type="number" placeholder="Digite o valor de destreza" [(ngModel)]="dexterity">
+    <input id="dexterity" name="ficha_dex" type="number" placeholder="Digite o valor de destreza" [(ngModel)]="ficha_dex">
   </div>
 
   <div class="form-group">
     <label for="constitution">Constituição</label>
-    <input id="constitution" name="constitution" type="number" placeholder="Digite o valor de constituição" [(ngModel)]="constitution">
+    <input id="constitution" name="ficha_con" type="number" placeholder="Digite o valor de constituição" [(ngModel)]="ficha_con">
   </div>
 
   <div class="form-group">
     <label for="intelligence">Inteligência</label>
-    <input id="intelligence" name="intelligence" type="number" placeholder="Digite o valor de inteligência" [(ngModel)]="intelligence">
+    <input id="intelligence" name="ficha_int" type="number" placeholder="Digite o valor de inteligência" [(ngModel)]="ficha_int">
   </div>
 
   <div class="form-group">
     <label for="wisdom">Sabedoria</label>
-    <input id="wisdom" name="wisdom" type="number" placeholder="Digite o valor de sabedoria" [(ngModel)]="wisdom">
+    <input id="wisdom" name="ficha_sab" type="number" placeholder="Digite o valor de sabedoria" [(ngModel)]="ficha_sab">
   </div>
 
   <div class="form-group">
     <label for="charisma">Carisma</label>
-    <input id="charisma" name="charisma" type="number" placeholder="Digite o valor de carisma" [(ngModel)]="charisma">
+    <input id="charisma" name="ficha_cha" type="number" placeholder="Digite o valor de carisma" [(ngModel)]="ficha_cha">
   </div>
 
-  <button type="button" class="btn" (click)="criarFicha()">Criar Ficha</button>
+  <button type="button" class="btn">Criar Ficha</button>
 </form>
