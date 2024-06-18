@@ -17,4 +17,12 @@ export class FichaService {
   addData(data: any): Observable<any> {
     return this.http.post<any>(this.apiUrl, data);
   }
+
+  updateData(data: any): Observable<any> {
+    return this.http.put<any>(this.apiUrl, data);
+  }
+
+  deleteData(data: any): Observable<any> {
+    return this.http.delete<any>(this.apiUrl, data);
+  }
 }
