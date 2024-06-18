@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class FichaService {
-  private apiUrl = 'http://localhost:3000/ficha';
+  private apiUrl = 'http://localhost:4200/ficha';
 
   constructor(private http: HttpClient) { }
 

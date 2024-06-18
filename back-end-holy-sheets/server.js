@@ -23,13 +23,22 @@ db.connect(error => {
 });
 /////////////////////////////////////////////////////////////////
 // Rotas CRUD pro cadastro do usuário
-app.get('/cadastros', (req, res) => {
-  const sql = 'SELECT * FROM cadastros';
-  db.query(sql, (error, results) => {
-      if (error) throw error;
-      res.send(results);
-  });
+app.get('/cadastros', async (req, res) => {
+  const { nome_usuario, senha_usuario } = req.query;
+
+  // Consulta no banco de dados
+  const user = await db.query('SELECT * FROM cadastros WHERE nome_usuario = ? AND senha_usuario = ?', [nome_usuario, senha_usuario]);
+
+  if (user.length > 0) {
+    // Usuário encontrado, login bem-sucedido
+    res.status(200).json({ message: 'Login bem-sucedido' });
+  } else {
+    // Usuário não encontrado, login falhou
+    res.status(401).json({ message: 'Credenciais inválidas' });
+  }
 });
+
+
 
 app.post('/cadastros', (req, res) => {
   const sql = 'INSERT INTO cadastros SET ?';
