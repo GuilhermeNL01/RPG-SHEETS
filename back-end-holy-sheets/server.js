@@ -23,19 +23,22 @@ db.connect(error => {
 });
 /////////////////////////////////////////////////////////////////
 // Rotas CRUD pro cadastro do usuário
-app.get('/cadastros', async (req, res) => {
-  const { nome_usuario, senha_usuario } = req.query;
+app.post('/login', (req, res) => {
+  const { nome_usuario, senha_usuario } = req.body; // Extrai as credenciais do corpo da requisição
 
-  // Consulta no banco de dados
-  const user = await db.query('SELECT * FROM cadastros WHERE nome_usuario = ? AND senha_usuario = ?', [nome_usuario, senha_usuario]);
+  // Consulta a tabela 'cadastros' no banco de dados para verificar as credenciais
+  const sql = 'SELECT * FROM cadastros WHERE nome_usuario = ? AND senha_usuario = ?';
+  db.query(sql, [nome_usuario, senha_usuario], (error, results) => {
+    if (error) throw error;
 
-  if (user.length > 0) {
-    // Usuário encontrado, login bem-sucedido
-    res.status(200).json({ message: 'Login bem-sucedido' });
-  } else {
-    // Usuário não encontrado, login falhou
-    res.status(401).json({ message: 'Credenciais inválidas' });
-  }
+    if (results.length > 0) {
+      // Usuário encontrado, login bem-sucedido
+      res.status(200).json({ message: 'Login bem-sucedido' });
+    } else {
+      // Usuário não encontrado, login falhou
+      res.status(401).json({ message: 'Credenciais inválidas' });
+    }
+  });
 });
 
 
@@ -50,7 +53,7 @@ app.post('/cadastros', (req, res) => {
 });
 
 app.put('/cadastros/:id_usuario', (req, res) => {
-  const sql = 'UPDATE cadastros SET ? WHERE id = ?';
+  const sql = 'UPDATE cadastros SET ? WHERE id_usuario = ?';
   const id = req.params.id;
   const updatedItem = req.body;
   db.query(sql, [updatedItem, id], (error, results) => {
@@ -60,7 +63,7 @@ app.put('/cadastros/:id_usuario', (req, res) => {
 });
 
 app.delete('/cadastros/:id_usuario', (req, res) => {
-  const sql = 'DELETE FROM cadastros WHERE id = ?';
+  const sql = 'DELETE FROM cadastros WHERE id_usuario = ?';
   const id = req.params.id;
   db.query(sql, id, (error, results) => {
       if (error) throw error;
@@ -87,7 +90,7 @@ app.post('/ficha', (req, res) => {
 });
 
 app.put('/ficha/:id_ficha', (req, res) => {
-  const sql = 'UPDATE ficha SET ? WHERE id = ?';
+  const sql = 'UPDATE ficha SET ? WHERE id_ficha = ?';
   const id = req.params.id;
   const updatedItem = req.body;
   db.query(sql, [updatedItem, id], (error, results) => {
@@ -97,7 +100,7 @@ app.put('/ficha/:id_ficha', (req, res) => {
 });
 
 app.delete('/ficha/:id_ficha', (req, res) => {
-  const sql = 'DELETE FROM ficha WHERE id = ?';
+  const sql = 'DELETE FROM ficha WHERE id_ficha = ?';
   const id = req.params.id;
   db.query(sql, id, (error, results) => {
       if (error) throw error;

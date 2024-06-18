@@ -8,7 +8,7 @@ import { data } from 'jquery';
 })
 export class DataService {
   private apiUrl = 'http://localhost:3000/cadastros';
-  private loginUrl = 'http://localhost:3000/cadastros'
+  private loginUrl = 'http://localhost:3000/login'
 
   constructor(private http: HttpClient) { }
 
@@ -29,11 +29,11 @@ export class DataService {
   }
 
   login(nome_usuario: string, senha_usuario: string): Observable<any> {
-    const url = `${this.loginUrl}?nome_usuario=${nome_usuario}&senha_usuario=${senha_usuario}`;
-    return this.http.get<any>(url);
+    return this.http.post<any>(`${this.loginUrl}`, { nome_usuario: nome_usuario, senha_usuario: senha_usuario });
   }
-
-
 }
+
+
+
 
 
