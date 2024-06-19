@@ -1,21 +1,3 @@
-
-<div>
-  <h1>Nome do personagem</h1>
-  <h2>Tipo de rpg</h2>
-</div>
-<div>
-  <h1>Nome do personagem</h1>
-  <h2>Tipo de rpg</h2>
-</div>
-<div>
-  <h1>Nome do personagem</h1>
-  <h2>Tipo de rpg</h2>
-</div>
-<div>
-  <h1>Nome do personagem</h1>
-  <h2>Tipo de rpg</h2>
-</div>
-<div>
-  <h1>Nome do personagem</h1>
-  <h2>Tipo de rpg</h2>
+<div *ngFor="let ficha of fichas">
+  <h1>{{ ficha.ficha_nome }}</h1>
 </div>
