@@ -3,9 +3,9 @@
   <div class="glassmorph">
   <div class="login-page">
     <div class="form">
-      <form class="login-form" (ngSubmit)="login()">
-        <input type="text" placeholder="username" [(ngModel)]="loginForm" name="nome_usuario"/>
-        <input type="password" placeholder="password" [(ngModel)]="loginForm" name="senha_usuario"/>
+      <form [formGroup]="loginForm" class="login-form" (ngSubmit)="login()">
+        <input type="text" placeholder="username" formControlName="nome_usuario" name="nome_usuario"/>
+        <input type="password" placeholder="password" formControlName="senha_usuario" name="senha_usuario"/>
         <button>login</button>
         <p class="message">Not registered? <a [routerLink]="['/cadastro']" routerLinkActive="router-link-active" >Create an account</a></p>
       </form>

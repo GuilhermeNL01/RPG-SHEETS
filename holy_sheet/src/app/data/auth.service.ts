@@ -27,8 +27,8 @@ export class AuthService {
     return !this.jwtHelper.isTokenExpired(token);
   }
 
-  register(username: string, password: string, otherDetails: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/cadastros`, { username, password, ...otherDetails });
+  register(nome_usuario: string, senha_usuario: string, otherDetails: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/cadastros`, { nome_usuario, senha_usuario, ...otherDetails });
   }
 
   // Método para obter o token do localStorage

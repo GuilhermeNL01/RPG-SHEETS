@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../data/auth.service';
 import { Router, RouterLink } from '@angular/router';
 
@@ -8,7 +8,7 @@ import { Router, RouterLink } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
   standalone: true,
-  imports: [RouterLink, FormsModule]
+  imports: [RouterLink, FormsModule, ReactiveFormsModule]
 })
 export class LoginComponent {
   loginForm: FormGroup;

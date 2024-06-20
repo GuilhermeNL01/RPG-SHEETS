@@ -57,8 +57,8 @@ app.post('/login', (req, res) => {
 
 
 app.post('/cadastros', (req, res) => {
-  const { nome_usuario, senha_usuario, ...rest } = req.body; // Assumindo que username e password são campos do corpo da requisição
-  bcrypt.hash(password, 10, (err, hash) => {
+  const { nome_usuario, senha_usuario, ...rest } = req.body; // nome_usuario e senha_usuario são campos do corpo da requisição
+  bcrypt.hash(senha_usuario, 10, (err, hash) => {
       if (err) throw err;
       const newItem = { ...rest, nome_usuario, senha_usuario: hash }; // Atualiza o objeto newItem com a senha hash
 
