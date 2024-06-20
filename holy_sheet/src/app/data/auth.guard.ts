@@ -6,7 +6,7 @@ import { AuthService } from './auth.service';
 @Injectable({
   providedIn: 'root'
 })
- class AuthGuard {
+ export class AuthGuard {
   constructor(private authService: AuthService, private router: Router) {}
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
@@ -19,7 +19,7 @@ import { AuthService } from './auth.service';
   }
 }
   export const IsAuthGuard: CanActivateFn = (next: ActivatedRouteSnapshot, state: RouterStateSnapshot):boolean => {
-    return inject(AuthGuard).canActivate(next, state);
+    return inject(IsAuthGuard).canActivate(next, state);
   }
 
 

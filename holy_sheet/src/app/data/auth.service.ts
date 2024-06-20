@@ -30,4 +30,9 @@ export class AuthService {
   register(username: string, password: string, otherDetails: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/cadastros`, { username, password, ...otherDetails });
   }
+
+  // Método para obter o token do localStorage
+  getToken(): string | null {
+    return localStorage.getItem('token');
+  }
 }

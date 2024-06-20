@@ -1,15 +1,15 @@
 <div class="sidebar">
   <div class="glassmorph">
-  <div class="login-page">
-    <div class="form">
-      <form class="register-form" (ngSubmit)="register()">
-        <input type="text" placeholder="username" [(ngModel)]="registerForm" name="nome_usuario"/>
-        <input type="password" placeholder="password" [(ngModel)]="registerForm" name="senha_usuario"/>
-        <input type="text" placeholder="email address" [(ngModel)]="registerForm" name="email_usuario"/>
-        <button>Sign Up</button>
-        <p class="message">Already registered? <a [routerLink]="['/login']" routerLinkActive="router-link-active">Sign In</a></p>
-      </form>
+    <div class="login-page">
+      <div class="form">
+        <form [formGroup]="registerForm" (ngSubmit)="register()" class="register-form">
+          <input type="text" formControlName="nome_usuario" placeholder="username"/>
+          <input type="password" formControlName="senha_usuario" placeholder="password"/>
+          <input type="text" formControlName="email_usuario" placeholder="email address"/>
+          <button type="submit">Sign Up</button>
+          <p class="message">Already registered? <a [routerLink]="['/login']" routerLinkActive="router-link-active">Sign In</a></p>
+        </form>
+      </div>
     </div>
   </div>
-</div>
 </div>

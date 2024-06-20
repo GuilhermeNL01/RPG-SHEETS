@@ -57,10 +57,10 @@ app.post('/login', (req, res) => {
 
 
 app.post('/cadastros', (req, res) => {
-  const { username, password, ...rest } = req.body; // Assumindo que username e password são campos do corpo da requisição
+  const { nome_usuario, senha_usuario, ...rest } = req.body; // Assumindo que username e password são campos do corpo da requisição
   bcrypt.hash(password, 10, (err, hash) => {
       if (err) throw err;
-      const newItem = { ...rest, username, password: hash }; // Atualiza o objeto newItem com a senha hash
+      const newItem = { ...rest, nome_usuario, senha_usuario: hash }; // Atualiza o objeto newItem com a senha hash
 
       const sql = 'INSERT INTO cadastros SET ?';
       db.query(sql, newItem, (error, results) => {
