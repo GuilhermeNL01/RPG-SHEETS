@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 //import { data } from 'jquery';
 
@@ -8,7 +8,6 @@ import { Observable } from 'rxjs';
 })
 export class DataService {
   private apiUrl = 'http://localhost:3000/cadastros';
-  private loginUrl = 'http://localhost:3000/login'
 
   constructor(private http: HttpClient) { }
 
@@ -28,9 +27,6 @@ export class DataService {
     return this.http.delete<any>(this.apiUrl, data);
   }
 
-  login(nome_usuario: string, senha_usuario: string): Observable<any> {
-    return this.http.post<any>(`${this.loginUrl}`, { nome_usuario: nome_usuario, senha_usuario: senha_usuario });
-  }
 }
 
 

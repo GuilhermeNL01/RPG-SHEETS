@@ -2,10 +2,10 @@
   <div class="glassmorph">
   <div class="login-page">
     <div class="form">
-      <form class="register-form" (ngSubmit)="onSubmit()">
-        <input type="text" placeholder="username" [(ngModel)]="nome_usuario" name="nome_usuario"/>
-        <input type="password" placeholder="password" [(ngModel)]="senha_usuario" name="senha_usuario"/>
-        <input type="text" placeholder="email address" [(ngModel)]="email_usuario" name="email_usuario"/>
+      <form class="register-form" (ngSubmit)="register()">
+        <input type="text" placeholder="username" [(ngModel)]="registerForm" name="nome_usuario"/>
+        <input type="password" placeholder="password" [(ngModel)]="registerForm" name="senha_usuario"/>
+        <input type="text" placeholder="email address" [(ngModel)]="registerForm" name="email_usuario"/>
         <button>Sign Up</button>
         <p class="message">Already registered? <a [routerLink]="['/login']" routerLinkActive="router-link-active">Sign In</a></p>
       </form>

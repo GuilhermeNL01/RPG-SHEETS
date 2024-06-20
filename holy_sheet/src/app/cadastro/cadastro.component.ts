@@ -1,7 +1,8 @@
+// src/app/register.component.ts
 import { Component } from '@angular/core';
-import { DataService } from '../data/data.service';
-import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { FormBuilder, FormGroup, Validators, FormsModule } from '@angular/forms';
+import { AuthService } from '../data/auth.service';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro',
@@ -11,24 +12,28 @@ import { RouterLink } from '@angular/router';
   styleUrl: './cadastro.component.css'
 })
 export class CadastroComponent {
+  registerForm: FormGroup;
 
-  nome_usuario: string = '';
-  senha_usuario: string = '';
-  email_usuario: string = '';
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {
+    this.registerForm = this.fb.group({
+      nome_usuario: ['', Validators.required],
+      senha_usuario: ['', Validators.required],
+      email_usuario: ['', Validators.required]
+    });
+  }
 
-  constructor(private datasService: DataService) { }
-
-  onSubmit() {
-    const dados = {
-      nome_usuario: this.nome_usuario,
-      senha_usuario: this.senha_usuario,
-      email_usuario: this.email_usuario,
-    };
-
-    this.datasService.addData(dados).subscribe(
-      {next:response => console.log('Dados enviados com sucesso', response),
-      error:error => console.error('Erro ao enviar dados', error)
-      }
-    );
+  register(): void {
+    if (this.registerForm.valid) {
+      const { nome_usuario, senha_usuario, email_usuario } = this.registerForm.value;
+      this.authService.register(nome_usuario, senha_usuario, { email_usuario }).subscribe({
+        next:() => this.router.navigate(['login']),
+        error:error => console.error('Erro no registro', error)
+    });
+    }
   }
 }
+

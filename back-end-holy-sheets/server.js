@@ -1,10 +1,13 @@
 const express = require('express');
 const mysql = require('mysql');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const app = express();
 const port = 3000;
+const secret = 'amongus';
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -38,17 +41,32 @@ app.post('/login', (req, res) => {
       // Usuário não encontrado, login falhou
       res.status(401).json({ message: 'Credenciais inválidas' });
     }
+    const user = results[0];
+        bcrypt.compare(senha_usuario, user.senha_usuario, (err, isMatch) => {
+            if (err) throw err;
+            if (isMatch) {
+                const token = jwt.sign({ id: user.id }, secret, { expiresIn: '1h' });
+                return res.json({ token });
+            } else {
+                return res.status(401).json({ message: 'Senha incorreta' });
+            }
+        });
   });
 });
 
 
 
 app.post('/cadastros', (req, res) => {
-  const sql = 'INSERT INTO cadastros SET ?';
-  const newItem = req.body;
-  db.query(sql, newItem, (error, results) => {
-      if (error) throw error;
-      res.send(results);
+  const { username, password, ...rest } = req.body; // Assumindo que username e password são campos do corpo da requisição
+  bcrypt.hash(password, 10, (err, hash) => {
+      if (err) throw err;
+      const newItem = { ...rest, username, password: hash }; // Atualiza o objeto newItem com a senha hash
+
+      const sql = 'INSERT INTO cadastros SET ?';
+      db.query(sql, newItem, (error, results) => {
+          if (error) throw error;
+          res.send({ message: 'Usuário registrado com sucesso', results });
+      });
   });
 });
 
