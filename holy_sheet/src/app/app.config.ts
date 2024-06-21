@@ -9,6 +9,7 @@ import { AuthGuard } from './data/auth.guard';
 import { AuthService } from './data/auth.service';
 import { JwtModule } from '@auth0/angular-jwt';
 
+
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),

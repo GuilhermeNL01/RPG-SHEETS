@@ -13,8 +13,17 @@ export class PerfilService {
 
   getProfile(): Observable<any> {
     const token = localStorage.getItem('token');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    if (!token) {
+      // Trate o caso em que o token não existe no localStorage
+      throw new Error('Token não encontrado no localStorage');
+    }
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
     return this.http.get<any>(this.apiUrl, { headers });
   }
 }
+
 
