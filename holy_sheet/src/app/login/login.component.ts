@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../data/auth.service';
 import { Router, RouterLink } from '@angular/router';
+import { routes } from '../app.routes';
 
 @Component({
   selector: 'app-login',
@@ -30,7 +31,8 @@ export class LoginComponent {
       this.authService.login(nome_usuario, senha_usuario).subscribe({
         next:(response) => {
           localStorage.setItem('token', response.token);
-          this.router.navigate(['site']);
+          console.log('login realizado com sucesso');
+          this.router.navigate(['/lobby']);
         },
         error: (error) => {
           console.log('Login error', error);

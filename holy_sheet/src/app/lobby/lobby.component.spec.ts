@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SiteComponent } from './site.component';
+import { LobbyComponent } from './lobby.component';
 
-describe('SiteComponent', () => {
-  let component: SiteComponent;
-  let fixture: ComponentFixture<SiteComponent>;
+describe('LobbyComponent', () => {
+  let component: LobbyComponent;
+  let fixture: ComponentFixture<LobbyComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SiteComponent]
+      imports: [LobbyComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(SiteComponent);
+    fixture = TestBed.createComponent(LobbyComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

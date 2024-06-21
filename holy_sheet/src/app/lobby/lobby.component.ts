@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { HeaderComponent } from "../header/header.component";
 
 @Component({
-    selector: 'app-site',
+    selector: 'app-lobby',
     standalone: true,
-    templateUrl: './site.component.html',
-    styleUrl: './site.component.css',
+    templateUrl: './lobby.component.html',
+    styleUrl: './lobby.component.css',
     imports: [HeaderComponent]
 })
-export class SiteComponent {
+export class LobbyComponent {
 
 }
