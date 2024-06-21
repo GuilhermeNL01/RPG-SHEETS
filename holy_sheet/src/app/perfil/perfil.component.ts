@@ -4,7 +4,9 @@ import { PerfilService } from '../data/perfil.service';
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
-  styleUrls: ['./perfil.component.css']
+  styleUrl: './perfil.component.css',
+  standalone: true,
+  imports: []
 })
 export class PerfilComponent implements OnInit {
 
