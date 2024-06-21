@@ -86,6 +86,32 @@ app.delete('/cadastros/:id_usuario', (req, res) => {
       res.send(results);
   });
 });
+
+const authenticateToken = (req, res, next) => {
+  const token = req.headers['authorization'];
+  if (!token) {
+    return res.status(401).send('Token não fornecido');
+  }
+  jwt.verify(token, secret, (err, user) => {
+    if (err) {
+      return res.status(403).send('Token inválido');
+    }
+    req.user = user;
+    next();
+  });
+};
+
+// Rota protegida para obter o perfil do usuário
+app.get('/cadastros', authenticateToken, (req, res) => {
+  const id_usuario = req.user.id;
+  db.query('SELECT * FROM cadastros WHERE id_usuario = ?', [id_usuario], (err, results) => {  
+    if (err) {
+      res.status(500).send(err);
+      return;
+    }
+    res.json(results[0]);
+  });
+});
 /////////////////////////////////////////////////////////////
 // Rotas CRUD pra ficha do usuário
 app.get('/ficha', (req, res) => {

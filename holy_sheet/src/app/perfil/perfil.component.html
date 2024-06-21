@@ -1,1 +1,6 @@
-<p>perfil works!</p>
+<div @if(user)>
+  <h1>{{ user.nome_usuario }}</h1>
+  <p>Email: {{ user.email_usuario }}</p>
+  <p>Senha: {{ user.senha_usuario }}</p>
+  <!-- Adicione mais campos conforme necessário -->
+</div>
