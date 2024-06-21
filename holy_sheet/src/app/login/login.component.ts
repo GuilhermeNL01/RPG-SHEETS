@@ -30,7 +30,7 @@ export class LoginComponent {
       this.authService.login(nome_usuario, senha_usuario).subscribe({
         next:(response) => {
           localStorage.setItem('token', response.token);
-          this.router.navigate(['']);
+          this.router.navigate(['site']);
         },
         error: (error) => {
           console.log('Login error', error);

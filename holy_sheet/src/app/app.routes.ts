@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { CriadorComponent } from './criador/criador.component';
 import { ListaFichasComponent } from './lista-fichas/lista-fichas.component';
 import { IsAuthGuard } from './data/auth.guard';
+import { SiteComponent } from './site/site.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -13,6 +14,7 @@ export const routes: Routes = [
   { path: 'cadastro', component: CadastroComponent },
   { path: 'criador', component: CriadorComponent, canActivate: [IsAuthGuard] },
   { path: 'listafichas', component: ListaFichasComponent, canActivate: [IsAuthGuard] },
-  { path: '**', redirectTo: '' }
+  { path: '**', redirectTo: '' },
+  { path: 'site', component: SiteComponent },
 ];
 

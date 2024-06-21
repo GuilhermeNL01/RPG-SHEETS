@@ -1,13 +1,14 @@
 import { FichaService } from './../data/ficha.service';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { HeaderComponent } from "../header/header.component";
 
 @Component({
-  selector: 'app-criador',
-  standalone: true,
-  imports: [FormsModule],
-  templateUrl: './criador.component.html',
-  styleUrls: ['./criador.component.css']
+    selector: 'app-criador',
+    standalone: true,
+    templateUrl: './criador.component.html',
+    styleUrls: ['./criador.component.css'],
+    imports: [FormsModule, HeaderComponent]
 })
 export class CriadorComponent {
   ficha_nome: string = '';

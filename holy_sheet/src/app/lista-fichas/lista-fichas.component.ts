@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { FichaService } from '../data/ficha.service'; 
+import { FichaService } from '../data/ficha.service';
 import { CommonModule } from '@angular/common';
+import { HeaderComponent } from "../header/header.component";
 
 @Component({
-  selector: 'app-lista-fichas',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './lista-fichas.component.html',
-  styleUrls: ['./lista-fichas.component.css']
+    selector: 'app-lista-fichas',
+    standalone: true,
+    templateUrl: './lista-fichas.component.html',
+    styleUrls: ['./lista-fichas.component.css'],
+    imports: [CommonModule, HeaderComponent]
 })
 export class ListaFichasComponent implements OnInit {
   fichas: any[] = [];
