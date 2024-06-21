@@ -27,32 +27,30 @@ db.connect(error => {
 /////////////////////////////////////////////////////////////////
 // Rotas CRUD pro cadastro do usuário
 app.post('/login', (req, res) => {
-  const { nome_usuario, senha_usuario } = req.body; // Extrai as credenciais do corpo da requisição
+  const { nome_usuario, senha_usuario } = req.body;
 
-  // Consulta a tabela 'cadastros' no banco de dados para verificar as credenciais
-  const sql = 'SELECT * FROM cadastros WHERE nome_usuario = ? AND senha_usuario = ?';
-  db.query(sql, [nome_usuario, senha_usuario], (error, results) => {
+  const sql = 'SELECT * FROM cadastros WHERE nome_usuario = ?';
+  db.query(sql, [nome_usuario], (error, results) => {
     if (error) throw error;
 
     if (results.length > 0) {
-      // Usuário encontrado, login bem-sucedido
-      res.status(200).json({ message: 'Login bem-sucedido' });
+      const user = results[0];
+      bcrypt.compare(senha_usuario, user.senha_usuario, (err, isMatch) => {
+        if (err) throw err;
+
+        if (isMatch) {
+          const token = jwt.sign({ id: user.id }, secret, { expiresIn: '1h' });
+          return res.json({ token });
+        } else {
+          return res.status(401).json({ message: 'Senha incorreta' });
+        }
+      });
     } else {
-      // Usuário não encontrado, login falhou
-      res.status(401).json({ message: 'Credenciais inválidas' });
+      res.status(401).json({ message: 'Usuário não encontrado' });
     }
-    const user = results[0];
-        bcrypt.compare(senha_usuario, user.senha_usuario, (err, isMatch) => {
-            if (err) throw err;
-            if (isMatch) {
-                const token = jwt.sign({ id: user.id }, secret, { expiresIn: '1h' });
-                return res.json({ token });
-            } else {
-                return res.status(401).json({ message: 'Senha incorreta' });
-            }
-        });
   });
 });
+
 
 
 

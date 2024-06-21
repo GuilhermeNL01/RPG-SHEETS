@@ -1,6 +1,6 @@
 // src/app/auth.guard.ts
 import { Injectable, inject } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router, CanActivateFn } from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot, Router, CanActivateFn } from '@angular/router';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -19,7 +19,7 @@ import { AuthService } from './auth.service';
   }
 }
   export const IsAuthGuard: CanActivateFn = (next: ActivatedRouteSnapshot, state: RouterStateSnapshot):boolean => {
-    return inject(IsAuthGuard).canActivate(next, state);
+    return inject(AuthGuard).canActivate(next, state);
   }
 
 
