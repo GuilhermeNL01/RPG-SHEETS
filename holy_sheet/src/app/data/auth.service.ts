@@ -20,7 +20,7 @@ export class AuthService {
   logout(): void {
     localStorage.removeItem('token');
     console.log('usuário deslogado');
-    this.router.navigate(['']);
+    this.router.navigate(['/login']);
   }
 
   public isAuthenticated(): boolean {
