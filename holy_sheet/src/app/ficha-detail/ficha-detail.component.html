@@ -1,0 +1,13 @@
+<app-header></app-header>
+<div *ngIf="ficha">
+  <h1>{{ ficha.ficha_nome }}</h1>
+  <p><strong>Raça:</strong> {{ ficha.ficha_raca }}</p>
+  <p><strong>Classe:</strong> {{ ficha.ficha_classe }}</p>
+  <p><strong>Nível:</strong> {{ ficha.ficha_nivel }}</p>
+  <p><strong>Força:</strong> {{ ficha.ficha_str }}</p>
+  <p><strong>Destreza:</strong> {{ ficha.ficha_dex }}</p>
+  <p><strong>Constituição:</strong> {{ ficha.ficha_con }}</p>
+  <p><strong>Inteligência:</strong> {{ ficha.ficha_int }}</p>
+  <p><strong>Sabedoria:</strong> {{ ficha.ficha_sab }}</p>
+  <p><strong>Carisma:</strong> {{ ficha.ficha_cha }}</p>
+</div>
