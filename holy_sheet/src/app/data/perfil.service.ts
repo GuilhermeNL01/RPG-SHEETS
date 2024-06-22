@@ -22,6 +22,14 @@ export class PerfilService {
       })
     );
   }
+
+  updateData(data: any): Observable<any> {
+    return this.http.put<any>(this.apiUrl, data);
+  }
+
+  deleteData(data: any): Observable<any> {
+    return this.http.delete<any>(this.apiUrl, data);
+  }
 }
 
 
