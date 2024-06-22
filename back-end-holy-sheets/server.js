@@ -117,6 +117,7 @@ app.get('/cadastros', authenticateToken, (req, res) => {
 });
 
 // CRUD routes for 'ficha'
+// Rota para obter todas as fichas
 app.get('/ficha', (req, res) => {
   const sql = 'SELECT * FROM ficha';
   db.query(sql, (error, results) => {

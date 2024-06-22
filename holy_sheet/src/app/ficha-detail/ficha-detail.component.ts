@@ -30,6 +30,9 @@ export class FichaDetailComponent implements OnInit {
           console.error('Erro ao buscar ficha', error);
         }
       });
+    } else {
+      console.error('ID da ficha não encontrado na rota');
     }
   }
+
 }
