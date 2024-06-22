@@ -1,12 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FichaService } from '../data/ficha.service';
-import { Location } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { HeaderComponent } from "../header/header.component";
 
 @Component({
-  selector: 'app-ficha-detail',
-  templateUrl: './ficha-detail.component.html',
-  styleUrls: ['./ficha-detail.component.css']
+    selector: 'app-ficha-detail',
+    templateUrl: './ficha-detail.component.html',
+    styleUrl: './ficha-detail.component.css',
+    standalone: true,
+    imports: [FormsModule, CommonModule, HeaderComponent]
 })
 export class FichaDetailComponent implements OnInit {
   ficha: any;
@@ -59,7 +63,7 @@ export class FichaDetailComponent implements OnInit {
 
   saveFicha(): void {
     // Chama o serviço para atualizar a ficha no backend
-    this.fichaService.updateFicha(this.ficha).subscribe({
+    this.fichaService.updateData(this.ficha).subscribe({
       next: () => {
         console.log('Ficha atualizada com sucesso');
         this.editMode = false; // Sai do modo de edição após salvar

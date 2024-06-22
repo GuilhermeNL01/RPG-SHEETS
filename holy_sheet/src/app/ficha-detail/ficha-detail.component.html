@@ -1,3 +1,4 @@
+<app-header></app-header>
 <div *ngIf="ficha">
     <h1>{{ ficha.ficha_nome }}</h1>
     <p><strong>Raça:</strong> {{ ficha.ficha_raca }}</p>
@@ -9,10 +10,10 @@
     <p><strong>Inteligência:</strong> {{ ficha.ficha_int }}</p>
     <p><strong>Sabedoria:</strong> {{ ficha.ficha_sab }}</p>
     <p><strong>Carisma:</strong> {{ ficha.ficha_cha }}</p>
-  
+
     <button (click)="deleteFicha()">Deletar Ficha</button>
     <button (click)="toggleEditMode()">Editar Ficha</button>
-  
+
     <!-- Formulário de Edição -->
     <div *ngIf="editMode">
       <h2>Editar Ficha</h2>
@@ -47,12 +48,11 @@
         <label>Carisma:
           <input type="number" [(ngModel)]="ficha.ficha_cha" name="ficha_cha" required>
         </label>
-  
+
         <!-- Adicione mais campos conforme necessário -->
-  
+
         <button type="submit">Salvar</button>
         <button type="button" (click)="cancelEdit()">Cancelar</button>
       </form>
     </div>
   </div>
-  
