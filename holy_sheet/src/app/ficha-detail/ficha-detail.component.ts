@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { FichaService } from '../data/ficha.service';
+import { HeaderComponent } from "../header/header.component";
 
 @Component({
-  selector: 'app-ficha-detail',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './ficha-detail.component.html',
-  styleUrls: ['./ficha-detail.component.css']
+    selector: 'app-ficha-detail',
+    standalone: true,
+    templateUrl: './ficha-detail.component.html',
+    styleUrls: ['./ficha-detail.component.css'],
+    imports: [CommonModule, HeaderComponent]
 })
 export class FichaDetailComponent implements OnInit {
   ficha: any;
