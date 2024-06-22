@@ -1,12 +1,10 @@
 <app-header></app-header>
-<div *ngIf="loading">Carregando perfil...</div>
-
-<div class="perfil" *ngIf="!loading && id_usuario">
-  <h1>{{ id_usuario.nome_usuario }}</h1>
-  <p>Email: {{ id_usuario.email_usuario }}</p>
-  <p>Senha: {{ id_usuario.senha_usuario }}</p>
+<div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+<div class="perfil" *ngIf="user && user.nome_usuario">
+  <h1>{{ user.nome_usuario }}</h1>
+  <p>Email: {{ user.email_usuario }}</p>
+  <p>Senha: {{ user.senha_usuario }}</p>
   <!-- Adicione mais campos conforme necessário -->
 </div>
 
-<div *ngIf="!loading && !id_usuario">Dados de usuário não encontrados.</div>
-
+<div *ngIf="!user.nome_usuario && !errorMessage">Dados de usuário não encontrados.</div>
