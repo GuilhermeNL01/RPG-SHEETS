@@ -1,4 +1,5 @@
-<div @if(user)>
+<app-header></app-header>
+<div class="perfil" *ngIf=" user">
   <h1>{{ user.nome_usuario }}</h1>
   <p>Email: {{ user.email_usuario }}</p>
   <p>Senha: {{ user.senha_usuario }}</p>

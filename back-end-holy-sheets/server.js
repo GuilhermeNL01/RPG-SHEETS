@@ -115,6 +115,7 @@ app.get('/cadastros', authenticateToken, (req, res) => {
     res.json(results[0]);
   });
 });
+
 /////////////////////////////////////////////////////////////
 // Rotas CRUD pra ficha do usuário
 app.get('/ficha', (req, res) => {
