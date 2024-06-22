@@ -24,8 +24,9 @@ export class PerfilService {
   }
 
   updateData(data: any): Observable<any> {
-    return this.http.put<any>(this.apiUrl, data);
+    return this.http.put<any>(`${this.apiUrl}/${data.id_usuario}`, data);
   }
+
 
   deleteData(data: any): Observable<any> {
     return this.http.delete<any>(this.apiUrl, data);

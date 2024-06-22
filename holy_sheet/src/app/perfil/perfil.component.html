@@ -1,10 +1,27 @@
 <app-header></app-header>
+
 <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
-<div class="perfil" *ngIf="user && user.nome_usuario">
+
+<div *ngIf="!editMode && user && user.nome_usuario" class="perfil">
   <h1>Bem Vindo, {{ user.nome_usuario }}</h1>
-  <p>Nome: {{user.nome_usuario}}</p>
+  <p>Nome: {{ user.nome_usuario }}</p>
   <p>Email: {{ user.email_usuario }}</p>
-  <!-- Adicione mais campos conforme necessário -->
+  <button (click)="toggleEditMode()">Editar</button>
+</div>
+
+<div *ngIf="editMode && editedUser">
+  <h1>Editar Perfil</h1>
+  <form (ngSubmit)="saveChanges()">
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome" name="nome" [(ngModel)]="editedUser.nome_usuario" required>
+    <br>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" [(ngModel)]="editedUser.email_usuario" required>
+    <br>
+    <!-- Adicione mais campos conforme necessário -->
+    <button type="submit">Salvar</button>
+    <button type="button" (click)="toggleEditMode()">Cancelar</button>
+  </form>
 </div>
 
 <div *ngIf="!user.nome_usuario && !errorMessage">Dados de usuário não encontrados.</div>
