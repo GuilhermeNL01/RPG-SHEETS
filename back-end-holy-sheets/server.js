@@ -39,7 +39,7 @@ app.post('/login', (req, res) => {
         if (err) throw err;
 
         if (isMatch) {
-          const token = jwt.sign({ id: user.id }, secret, { expiresIn: '1h' });
+          const token = jwt.sign({ id: user.id_usuario }, secret, { expiresIn: '1h' });
           return res.json({ token });
         } else {
           return res.status(401).json({ message: 'Senha incorreta' });
@@ -106,7 +106,7 @@ const authenticateToken = (req, res, next) => {
 
 // Rota protegida para obter o perfil do usuário
 app.get('/cadastros', authenticateToken, (req, res) => {
-  const id_usuario = req.user.id;
+  const id_usuario = req.user.id_usuario;
   db.query('SELECT * FROM cadastros WHERE id_usuario = ?', [id_usuario], (err, results) => {  
     if (err) {
       res.status(500).send(err);

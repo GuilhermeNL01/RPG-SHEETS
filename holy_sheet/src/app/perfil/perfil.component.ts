@@ -12,28 +12,25 @@ import { HeaderComponent } from "../header/header.component";
 })
 export class PerfilComponent implements OnInit {
 
-  user: any = null; // Inicializa como null
+  id_usuario: any = null; // Inicializa como null
+  loading = true; // Variável para controlar o estado de carregamento
 
   constructor(private perfilService: PerfilService) { }
 
   ngOnInit(): void {
     this.perfilService.getProfile().subscribe({
       next: (data) => {
-        if (data) {
-          console.log('Dados do usuário recebidos:', data);
-          this.user = data;
-        } else {
-          console.error('Dados de usuário recebidos do servidor são nulos ou vazios.');
-        }
+        console.log('Dados do usuário recebidos:', data);
+        this.id_usuario = data;
+        this.loading = false; // Marca o carregamento como concluído
       },
       error: (error) => {
         console.error('Erro ao obter perfil:', error);
-        // Tratar o erro de forma apropriada, exibindo uma mensagem de erro ao usuário, por exemplo
+        this.loading = false; // Marca o carregamento como concluído mesmo em caso de erro
+        // Tratar o erro de forma apropriada, exibindo uma mensagem de erro ao usuário
       }
     });
   }
-
-
 
 }
 
