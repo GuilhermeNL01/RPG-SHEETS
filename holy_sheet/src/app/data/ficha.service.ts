@@ -19,8 +19,10 @@ export class FichaService {
   }
 
   updateData(data: any): Observable<any> {
-    return this.http.put<any>(`${this.apiUrl}/${data}`, data);
+    const id = data.id_ficha; // Assuming 'id_ficha' is the correct property name
+    return this.http.put<any>(`${this.apiUrl}/${id}`, data);
   }
+
 
   deleteData(data: any): Observable<any> {
     return this.http.delete<any>(`${this.apiUrl}/${data}`, data);
