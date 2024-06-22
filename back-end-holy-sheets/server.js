@@ -134,7 +134,7 @@ app.post('/ficha', (req, res) => {
   });
 });
 
-app.get('/ficha/:id_ficha', (req, res) => { // Adicione esta rota
+app.get('/ficha-detail/:id_ficha', (req, res) => { // Adicione esta rota
   const sql = 'SELECT * FROM ficha WHERE id_ficha = ?';
   const id_ficha = req.params.id_ficha;
   db.query(sql, [id_ficha], (error, results) => {

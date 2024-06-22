@@ -18,5 +18,5 @@ export const routes: Routes = [
   { path: 'listafichas', component: ListaFichasComponent, canActivate: [IsAuthGuard] },
   { path: 'lobby', component: LobbyComponent },
   { path: 'perfil', component: PerfilComponent },
-  { path: 'ficha/:id', component: FichaDetailComponent, canActivate: [IsAuthGuard] }, 
+  { path: 'ficha/:id_ficha', component: FichaDetailComponent},
 ];
