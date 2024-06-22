@@ -1,9 +1,9 @@
 <app-header></app-header>
 <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
 <div class="perfil" *ngIf="user && user.nome_usuario">
-  <h1>{{ user.nome_usuario }}</h1>
+  <h1>Bem Vindo, {{ user.nome_usuario }}</h1>
+  <p>Nome: {{user.nome_usuario}}</p>
   <p>Email: {{ user.email_usuario }}</p>
-  <p>Senha: {{ user.senha_usuario }}</p>
   <!-- Adicione mais campos conforme necessário -->
 </div>
 
