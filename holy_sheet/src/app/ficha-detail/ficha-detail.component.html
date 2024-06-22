@@ -1,4 +1,5 @@
 <app-header></app-header>
+
 <div *ngIf="ficha">
   <h1>{{ ficha.ficha_nome }}</h1>
   <p><strong>Raça:</strong> {{ ficha.ficha_raca }}</p>
@@ -10,4 +11,8 @@
   <p><strong>Inteligência:</strong> {{ ficha.ficha_int }}</p>
   <p><strong>Sabedoria:</strong> {{ ficha.ficha_sab }}</p>
   <p><strong>Carisma:</strong> {{ ficha.ficha_cha }}</p>
+
+  <button (click)="deleteFicha()">Deletar Ficha</button>
+  <button (click)="editFicha()">Editar Ficha</button>
 </div>
+

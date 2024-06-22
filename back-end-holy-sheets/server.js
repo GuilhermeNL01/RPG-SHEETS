@@ -169,9 +169,21 @@ app.put('/ficha/:id_ficha', (req, res) => {
 app.delete('/ficha/:id_ficha', (req, res) => {
   const sql = 'DELETE FROM ficha WHERE id_ficha = ?';
   const id_ficha = req.params.id_ficha;
-  db.query(sql, id_ficha, (error, results) => {
-    if (error) throw error;
-    res.send(results);
+
+  db.query(sql, [id_ficha], (error, results) => {
+    if (error) {
+      console.error(`Erro ao deletar ficha com id ${id_ficha}:`, error);
+      res.status(500).send('Erro ao deletar ficha');
+      return;
+    }
+    
+    if (results.affectedRows > 0) {
+      console.log(`Ficha com id ${id_ficha} deletada com sucesso`);
+      res.send({ message: 'Ficha deletada com sucesso' });
+    } else {
+      console.log(`Ficha com id ${id_ficha} não encontrada`);
+      res.status(404).send('Ficha não encontrada');
+    }
   });
 });
 
