@@ -134,6 +134,15 @@ app.post('/ficha', (req, res) => {
   });
 });
 
+app.get('/ficha/:id_ficha', (req, res) => { // Adicione esta rota
+  const sql = 'SELECT * FROM ficha WHERE id_ficha = ?';
+  const id_ficha = req.params.id_ficha;
+  db.query(sql, [id_ficha], (error, results) => {
+    if (error) throw error;
+    res.send(results[0]);
+  });
+});
+
 app.put('/ficha/:id_ficha', (req, res) => {
   const sql = 'UPDATE ficha SET ? WHERE id_ficha = ?';
   const id_ficha = req.params.id_ficha;

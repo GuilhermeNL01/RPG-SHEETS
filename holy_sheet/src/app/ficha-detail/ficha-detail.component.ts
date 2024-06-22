@@ -20,7 +20,7 @@ export class FichaDetailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
+    const id = this.route.snapshot.paramMap.get('id_ficha');
     if (id) {
       this.fichaService.getFichaById(id).subscribe({
         next: data => {
