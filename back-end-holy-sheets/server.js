@@ -19,77 +19,15 @@ const db = mysql.createConnection({
   database: 'holysheetsdb'
 });
 
-
 db.connect(error => {
   if (error) throw error;
   console.log('Banco de dados conectado!');
 });
-/////////////////////////////////////////////////////////////////
-// Rotas CRUD pro cadastro do usuário
-app.post('/login', (req, res) => {
-  const { nome_usuario, senha_usuario } = req.body;
 
-  const sql = 'SELECT * FROM cadastros WHERE nome_usuario = ?';
-  db.query(sql, [nome_usuario], (error, results) => {
-    if (error) throw error;
-
-    if (results.length > 0) {
-      const user = results[0];
-      bcrypt.compare(senha_usuario, user.senha_usuario, (err, isMatch) => {
-        if (err) throw err;
-
-        if (isMatch) {
-          const token = jwt.sign({ id: user.id_usuario }, secret, { expiresIn: '1h' });
-          return res.json({ token });
-        } else {
-          return res.status(401).json({ message: 'Senha incorreta' });
-        }
-      });
-    } else {
-      res.status(401).json({ message: 'Usuário não encontrado' });
-    }
-  });
-});
-
-
-
-
-app.post('/cadastros', (req, res) => {
-  const { nome_usuario, senha_usuario, ...rest } = req.body; // nome_usuario e senha_usuario são campos do corpo da requisição
-  bcrypt.hash(senha_usuario, 10, (err, hash) => {
-      if (err) throw err;
-      const newItem = { ...rest, nome_usuario, senha_usuario: hash }; // Atualiza o objeto newItem com a senha hash
-
-      const sql = 'INSERT INTO cadastros SET ?';
-      db.query(sql, newItem, (error, results) => {
-          if (error) throw error;
-          res.send({ message: 'Usuário registrado com sucesso', results });
-      });
-  });
-});
-
-app.put('/cadastros/:id_usuario', (req, res) => {
-  const sql = 'UPDATE cadastros SET ? WHERE id_usuario = ?';
-  const id = req.params.id;
-  const updatedItem = req.body;
-  db.query(sql, [updatedItem, id], (error, results) => {
-      if (error) throw error;
-      res.send(results);
-  });
-});
-
-app.delete('/cadastros/:id_usuario', (req, res) => {
-  const sql = 'DELETE FROM cadastros WHERE id_usuario = ?';
-  const id = req.params.id;
-  db.query(sql, id, (error, results) => {
-      if (error) throw error;
-      res.send(results);
-  });
-});
-
+// Middleware to authenticate token
 const authenticateToken = (req, res, next) => {
   const authHeader = req.headers['authorization'];
-  const token = authHeader && authHeader.split(' ')[1]; // Extrai o token do cabeçalho
+  const token = authHeader && authHeader.split(' ')[1];
 
   if (!token) {
     return res.status(401).send('Token não fornecido');
@@ -104,10 +42,72 @@ const authenticateToken = (req, res, next) => {
   });
 };
 
-// Rota protegida para obter o perfil do usuário
+// Login route
+app.post('/login', (req, res) => {
+  const { nome_usuario, senha_usuario } = req.body;
+
+  const sql = 'SELECT * FROM cadastros WHERE nome_usuario = ?';
+  db.query(sql, [nome_usuario], (error, results) => {
+    if (error) throw error;
+
+    if (results.length > 0) {
+      const user = results[0];
+      bcrypt.compare(senha_usuario, user.senha_usuario, (err, isMatch) => {
+        if (err) throw err;
+
+        if (isMatch) {
+          const token = jwt.sign({ id_usuario: user.id_usuario }, secret, { expiresIn: '1h' });
+          return res.json({ token });
+        } else {
+          return res.status(401).json({ message: 'Senha incorreta' });
+        }
+      });
+    } else {
+      res.status(401).json({ message: 'Usuário não encontrado' });
+    }
+  });
+});
+
+// Route to register a user
+app.post('/cadastros', (req, res) => {
+  const { nome_usuario, senha_usuario, ...rest } = req.body;
+  bcrypt.hash(senha_usuario, 10, (err, hash) => {
+    if (err) throw err;
+    const newItem = { ...rest, nome_usuario, senha_usuario: hash };
+
+    const sql = 'INSERT INTO cadastros SET ?';
+    db.query(sql, newItem, (error, results) => {
+      if (error) throw error;
+      res.send({ message: 'Usuário registrado com sucesso', results });
+    });
+  });
+});
+
+// Route to update a user
+app.put('/cadastros/:id_usuario', (req, res) => {
+  const sql = 'UPDATE cadastros SET ? WHERE id_usuario = ?';
+  const id_usuario = req.params.id_usuario;
+  const updatedItem = req.body;
+  db.query(sql, [updatedItem, id_usuario], (error, results) => {
+    if (error) throw error;
+    res.send(results);
+  });
+});
+
+// Route to delete a user
+app.delete('/cadastros/:id_usuario', (req, res) => {
+  const sql = 'DELETE FROM cadastros WHERE id_usuario = ?';
+  const id_usuario = req.params.id_usuario;
+  db.query(sql, id_usuario, (error, results) => {
+    if (error) throw error;
+    res.send(results);
+  });
+});
+
+// Protected route to get user profile
 app.get('/cadastros', authenticateToken, (req, res) => {
   const id_usuario = req.user.id_usuario;
-  db.query('SELECT * FROM cadastros WHERE id_usuario = ?', [id_usuario], (err, results) => {  
+  db.query('SELECT * FROM cadastros WHERE id_usuario = ?', [id_usuario], (err, results) => {
     if (err) {
       res.status(500).send(err);
       return;
@@ -116,13 +116,12 @@ app.get('/cadastros', authenticateToken, (req, res) => {
   });
 });
 
-/////////////////////////////////////////////////////////////
-// Rotas CRUD pra ficha do usuário
+// CRUD routes for 'ficha'
 app.get('/ficha', (req, res) => {
   const sql = 'SELECT * FROM ficha';
   db.query(sql, (error, results) => {
-      if (error) throw error;
-      res.send(results);
+    if (error) throw error;
+    res.send(results);
   });
 });
 
@@ -130,27 +129,27 @@ app.post('/ficha', (req, res) => {
   const sql = 'INSERT INTO ficha SET ?';
   const newItem = req.body;
   db.query(sql, newItem, (error, results) => {
-      if (error) throw error;
-      res.send(results);
+    if (error) throw error;
+    res.send(results);
   });
 });
 
 app.put('/ficha/:id_ficha', (req, res) => {
   const sql = 'UPDATE ficha SET ? WHERE id_ficha = ?';
-  const id = req.params.id;
+  const id_ficha = req.params.id_ficha;
   const updatedItem = req.body;
-  db.query(sql, [updatedItem, id], (error, results) => {
-      if (error) throw error;
-      res.send(results);
+  db.query(sql, [updatedItem, id_ficha], (error, results) => {
+    if (error) throw error;
+    res.send(results);
   });
 });
 
 app.delete('/ficha/:id_ficha', (req, res) => {
   const sql = 'DELETE FROM ficha WHERE id_ficha = ?';
-  const id = req.params.id;
-  db.query(sql, id, (error, results) => {
-      if (error) throw error;
-      res.send(results);
+  const id_ficha = req.params.id_ficha;
+  db.query(sql, id_ficha, (error, results) => {
+    if (error) throw error;
+    res.send(results);
   });
 });
 
