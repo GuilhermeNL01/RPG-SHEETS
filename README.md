@@ -2,6 +2,8 @@
 
 Este é o repositório oficial do projeto RPG SHEETS, desenvolvido em Angular. O RPG SHEETS é um site dedicado à criação de fichas de RPG, oferecendo uma plataforma intuitiva para os jogadores de RPG personalizarem e gerenciarem suas fichas de personagem.
 
+[Assista ao nosso vídeo de introdução no YouTube](https://www.youtube.com/watch?v=ql7klZPt-SI)
+
 ## Membros
 
 - **Felipe Vasconcelos Cardoso**
