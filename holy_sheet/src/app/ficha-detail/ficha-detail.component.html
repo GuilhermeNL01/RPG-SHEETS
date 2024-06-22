@@ -1,18 +1,58 @@
-<app-header></app-header>
-
 <div *ngIf="ficha">
-  <h1>{{ ficha.ficha_nome }}</h1>
-  <p><strong>Raça:</strong> {{ ficha.ficha_raca }}</p>
-  <p><strong>Classe:</strong> {{ ficha.ficha_classe }}</p>
-  <p><strong>Nível:</strong> {{ ficha.ficha_nivel }}</p>
-  <p><strong>Força:</strong> {{ ficha.ficha_str }}</p>
-  <p><strong>Destreza:</strong> {{ ficha.ficha_dex }}</p>
-  <p><strong>Constituição:</strong> {{ ficha.ficha_con }}</p>
-  <p><strong>Inteligência:</strong> {{ ficha.ficha_int }}</p>
-  <p><strong>Sabedoria:</strong> {{ ficha.ficha_sab }}</p>
-  <p><strong>Carisma:</strong> {{ ficha.ficha_cha }}</p>
-
-  <button (click)="deleteFicha()">Deletar Ficha</button>
-  <button (click)="editFicha()">Editar Ficha</button>
-</div>
-
+    <h1>{{ ficha.ficha_nome }}</h1>
+    <p><strong>Raça:</strong> {{ ficha.ficha_raca }}</p>
+    <p><strong>Classe:</strong> {{ ficha.ficha_classe }}</p>
+    <p><strong>Nível:</strong> {{ ficha.ficha_nivel }}</p>
+    <p><strong>Força:</strong> {{ ficha.ficha_str }}</p>
+    <p><strong>Destreza:</strong> {{ ficha.ficha_dex }}</p>
+    <p><strong>Constituição:</strong> {{ ficha.ficha_con }}</p>
+    <p><strong>Inteligência:</strong> {{ ficha.ficha_int }}</p>
+    <p><strong>Sabedoria:</strong> {{ ficha.ficha_sab }}</p>
+    <p><strong>Carisma:</strong> {{ ficha.ficha_cha }}</p>
+  
+    <button (click)="deleteFicha()">Deletar Ficha</button>
+    <button (click)="toggleEditMode()">Editar Ficha</button>
+  
+    <!-- Formulário de Edição -->
+    <div *ngIf="editMode">
+      <h2>Editar Ficha</h2>
+      <form (ngSubmit)="saveFicha()">
+        <label>Nome:
+          <input type="text" [(ngModel)]="ficha.ficha_nome" name="ficha_nome" required>
+        </label>
+        <label>Raça:
+          <input type="text" [(ngModel)]="ficha.ficha_raca" name="ficha_raca" required>
+        </label>
+        <label>Classe:
+          <input type="text" [(ngModel)]="ficha.ficha_classe" name="ficha_classe" required>
+        </label>
+        <label>Nível:
+          <input type="number" [(ngModel)]="ficha.ficha_nivel" name="ficha_nivel" required>
+        </label>
+        <label>Força:
+          <input type="number" [(ngModel)]="ficha.ficha_str" name="ficha_str" required>
+        </label>
+        <label>Destreza:
+          <input type="number" [(ngModel)]="ficha.ficha_dex" name="ficha_dex" required>
+        </label>
+        <label>Constituição:
+          <input type="number" [(ngModel)]="ficha.ficha_con" name="ficha_con" required>
+        </label>
+        <label>Inteligência:
+          <input type="number" [(ngModel)]="ficha.ficha_int" name="ficha_int" required>
+        </label>
+        <label>Sabedoria:
+          <input type="number" [(ngModel)]="ficha.ficha_sab" name="ficha_sab" required>
+        </label>
+        <label>Carisma:
+          <input type="number" [(ngModel)]="ficha.ficha_cha" name="ficha_cha" required>
+        </label>
+  
+        <!-- Adicione mais campos conforme necessário -->
+  
+        <button type="submit">Salvar</button>
+        <button type="button" (click)="cancelEdit()">Cancelar</button>
+      </form>
+    </div>
+  </div>
+  

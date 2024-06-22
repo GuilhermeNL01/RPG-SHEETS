@@ -1,19 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { FichaService } from '../data/ficha.service';
-import { HeaderComponent } from "../header/header.component";
 import { Location } from '@angular/common';
 
 @Component({
-    selector: 'app-ficha-detail',
-    standalone: true,
-    templateUrl: './ficha-detail.component.html',
-    styleUrls: ['./ficha-detail.component.css'],
-    imports: [CommonModule, HeaderComponent]
+  selector: 'app-ficha-detail',
+  templateUrl: './ficha-detail.component.html',
+  styleUrls: ['./ficha-detail.component.css']
 })
 export class FichaDetailComponent implements OnInit {
   ficha: any;
+  editMode = false;
+  originalFicha: any; // Para armazenar a ficha original antes da edição
 
   constructor(
     private route: ActivatedRoute,
@@ -27,6 +25,8 @@ export class FichaDetailComponent implements OnInit {
       this.fichaService.getFichaById(id).subscribe({
         next: data => {
           this.ficha = data;
+          // Faz uma cópia da ficha original para poder cancelar a edição se necessário
+          this.originalFicha = { ...this.ficha };
         },
         error: error => {
           console.error('Erro ao buscar ficha', error);
@@ -53,9 +53,26 @@ export class FichaDetailComponent implements OnInit {
     }
   }
 
-  editFicha(): void {
-    // Implementar a lógica para navegação para a página de edição, passando o ID da ficha
-    // Exemplo de navegação para uma rota de edição:
-    // this.router.navigate(['/fichas', this.ficha.id, 'edit']);
+  toggleEditMode(): void {
+    this.editMode = true;
+  }
+
+  saveFicha(): void {
+    // Chama o serviço para atualizar a ficha no backend
+    this.fichaService.updateFicha(this.ficha).subscribe({
+      next: () => {
+        console.log('Ficha atualizada com sucesso');
+        this.editMode = false; // Sai do modo de edição após salvar
+      },
+      error: (error: any) => {
+        console.error('Erro ao salvar ficha', error);
+      }
+    });
+  }
+
+  cancelEdit(): void {
+    // Cancela a edição e restaura a ficha original
+    this.ficha = { ...this.originalFicha };
+    this.editMode = false;
   }
 }
