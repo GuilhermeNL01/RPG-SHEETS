@@ -8,7 +8,7 @@ import { ListaFichasComponent } from './lista-fichas/lista-fichas.component';
 import { IsAuthGuard } from './data/auth.guard';
 import { LobbyComponent } from './lobby/lobby.component';
 import { PerfilComponent } from './perfil/perfil.component';
-
+import { FichaDetailComponent } from './ficha-detail/ficha-detail.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -18,5 +18,5 @@ export const routes: Routes = [
   { path: 'listafichas', component: ListaFichasComponent, canActivate: [IsAuthGuard] },
   { path: 'lobby', component: LobbyComponent },
   { path: 'perfil', component: PerfilComponent },
+  { path: 'ficha/:id', component: FichaDetailComponent, canActivate: [IsAuthGuard] }, 
 ];
-

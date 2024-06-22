@@ -1,4 +1,4 @@
 <app-header></app-header>
 <div *ngFor="let ficha of fichas">
-  <h1>{{ ficha.ficha_nome }}</h1>
+  <h1><a [routerLink]="['/ficha', ficha.id]">{{ ficha.ficha_nome }}</a></h1>
 </div>

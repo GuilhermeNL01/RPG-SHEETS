@@ -25,4 +25,8 @@ export class FichaService {
   deleteData(data: any): Observable<any> {
     return this.http.delete<any>(this.apiUrl, data);
   }
+
+  getFichaById(id: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/${id}`);
+  }
 }
